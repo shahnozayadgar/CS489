@@ -3,9 +3,6 @@ const User = require("../models/UserModel");
 
 class UserDAO {
   static async createUser(user) {
-    if (!user.isValid() || !user.isMBTIValid()) {
-      throw new Error("Invalid user data");
-    }
 
     // get existing users in the database
     const snapshot = await db.ref("users").once("value");
