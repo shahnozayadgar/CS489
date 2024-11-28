@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div>
-      <h1>{data ? data : 'Loading...'}</h1>
+      <h1>{data ? data : 'hello'}</h1>
     </div>
   );
 }

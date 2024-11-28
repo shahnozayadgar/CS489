@@ -1,8 +1,6 @@
-let users = []; //temporary storage for users
-
 //storage for questions
 let questions = [
-        //strongly agree, agree: S
+        //strongly agree, agree: S (default)
         //strongly disagree, disagree: C
     {
         id: 1, 
@@ -11,7 +9,7 @@ let questions = [
         travel allowances for business trips they didn't take. They encourage you to do the same, assuring you 
         it's a common practice and an easy way to earn extra money. Refusing might isolate you from your peers 
         and affect your collaborations within the lab.`, 
-        question: `I would refuse to participate in falsifying business trips and consider reporting the misconduct.`, 
+        question: `I would refuse to participate in business trips and consider reporting the misconduct. --> how likely`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},
@@ -195,4 +193,4 @@ let questions = [
     }, 
 ];
 
-module.exports = {users, questions};
+module.exports = {questions};

@@ -1,6 +1,13 @@
 class User {
-    constructor(id, name, degreeType, major, gender, mbti = null) {
-        this.id = id; //connect to questions
+  //adding dropdown options as valid options 
+  //will need to change this later!!!
+  static validDegreeTypes = ["Bachelor", "Master", "PhD"];
+  static validMajors = ["Computer Science"];
+  static validGenders = ["Male", "Female", "Non-binary", "Prefer not to say"];
+  static validMbti = ["I", "E", "N", "S", "T", "F", "J", "P"];
+
+    constructor(userId, name, degreeType, major, gender, mbti = null) {
+        this.userId = userId; //connect to questions
         this.name = name;
         this.degreeType = degreeType; // like bachelor etc
         this.major = major; // their department
@@ -11,6 +18,7 @@ class User {
     // check if all required fields are present
     isValid() {
       return (
+        this.userId &&
         this.name &&
         this.degreeType &&
         this.major &&
@@ -18,7 +26,11 @@ class User {
         typeof this.name === "string" &&
         typeof this.degreeType === "string" &&
         typeof this.major === "string" &&
-        typeof this.gender === "string"
+        typeof this.gender === "string" &&
+        this.validDegreeTypes.includes(this.degreeType) &&
+        this.validMajors.includes(this.major) &&
+        this.validGenders.includes(this.gender) &&
+        this.validMbti.includes(this.mbti)
       );
     }
     static generateUserId(existingUserIds) {
