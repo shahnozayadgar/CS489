@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
 const mbtiRoutes = require('./routes/mbtiRoutes'); 
+const testRoutes = require('./routes/test');
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,7 @@ const port = process.env.PORT || 5001;
 
 app.use('/api/auth', authRoutes);
 app.use('/api/mbti', mbtiRoutes);
+app.use('/api/test', testRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from the backend!' });
