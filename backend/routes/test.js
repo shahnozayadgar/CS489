@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {questions} = require('../data');
+const {questions} = require('../data/data');
 
 //end point to get all scenarios and questions
 router.get('/questions/:id', (req, res) => {

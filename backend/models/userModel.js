@@ -1,6 +1,6 @@
 class User {
-    constructor(id, name, degreeType, major, gender, mbti = null) {
-        this.id = id; //connect to questions
+    constructor(userId, name, degreeType, major, gender, mbti = null) {
+        this.userId = userId; //connect to questions
         this.name = name;
         this.degreeType = degreeType; // like bachelor etc
         this.major = major; // their department
@@ -11,6 +11,7 @@ class User {
     // check if all required fields are present
     isValid() {
       return (
+        this.userId &&
         this.name &&
         this.degreeType &&
         this.major &&
