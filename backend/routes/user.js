@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const UserDAO = require('../Dao/userDAO');
 
+//endpoint to get dropdown options 
+router.get('/options', async (req, res) => {
+    res.json({
+        degreeTypes: User.validDegreeTypes, 
+        majors: User.validMajors,
+        genders: User.validGenders,
+        mbti: User.validMbti,
+    });
+});
+
 //creating a new user
 router.post('/', async (req, res) => {
     try {
@@ -12,6 +22,19 @@ router.post('/', async (req, res) => {
             gender: req.body.gender,
             mbti: req.body.mbti
         };
+        // Validate the input values against allowed options
+        if (!User.validDegreeTypes.includes(newData.degreeType)) {
+            return res.status(400).json({ message: 'Invalid degree type' });
+        }
+        if (!User.validMajors.includes(newData.major)) {
+            return res.status(400).json({ message: 'Invalid major' });
+        }
+        if (!User.validGenders.includes(newData.gender)) {
+            return res.status(400).json({ message: 'Invalid gender' });
+        }
+        if (!User.validMbti.includes(newData.mbti)) {
+            return res.status(400).json({ message: 'Invalid MBTI' });
+        }
         const newUser = await UserDAO.createUser(newData);
         res.status(201).json(newUser);
     } catch (error) {
@@ -19,6 +42,7 @@ router.post('/', async (req, res) => {
         res.status(500).json({message: 'error creating a user', error: error.message});
     }
 });
+
 
 //getting a user by their id
 router.get('/:userId', async (req, res) => {
