@@ -12,9 +12,9 @@ app.use(express.json());
 
 const port = process.env.PORT || 5001;
 
-app.use('/api/auth', authRoutes);
 app.use('/api/mbti', mbtiRoutes);
 app.use('/api/test', testRoutes);
+app.use('/api/user', userRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from the backend!' });
