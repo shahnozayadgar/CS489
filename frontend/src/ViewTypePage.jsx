@@ -7,13 +7,10 @@ import {
   LinearProgress,
   Divider,
 } from "@mui/material";
-import NavBar from "./NavBar";
 
 function ViewTypePage() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      {/* Navbar Section */}
-      <NavBar />
 
       {/* Main Content Section */}
       <Container maxWidth="lg" sx={{ marginTop: 6 }}>

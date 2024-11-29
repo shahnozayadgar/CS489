@@ -1,6 +1,5 @@
 import React from "react";
 import { Form, Input, Select, Button, Typography, Row, Col, Card, message } from "antd";
-import NavBar from "./NavBar"; 
 
 const { Option } = Select;
 
@@ -32,10 +31,8 @@ const RegistrationPage = () => {
 
   return (
     <div>
-      <NavBar />
       <div className="registration-container" style={{ marginTop: "40px", padding: "0 50px" }}>
         <Row justify="center" gutter={[16, 16]}>
-          {/* Left Section: Illustration */}
           <Col
             xs={24}
             md={10}
@@ -68,10 +65,10 @@ const RegistrationPage = () => {
                 margin: "0 auto", // Center the Card within the column
               }}
             >
-              <Typography.Title level={3} style={{ fontWeight: "bold", textAlign: "center" }}>
+              <Typography.Title level={3} style={{ fontWeight: "bold", fontSize: "35px", textAlign: "center" }}>
                 Who are you?
               </Typography.Title>
-              <Typography.Text style={{ fontSize: "16px", marginBottom: "20px", display: "block", textAlign: "center" }}>
+              <Typography.Text style={{ fontSize: "18px", marginBottom: "35px", display: "block", textAlign: "center" }}>
                 Tell us about yourself
               </Typography.Text>
 

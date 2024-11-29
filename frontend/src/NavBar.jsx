@@ -1,5 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -21,17 +22,45 @@ function NavBar() {
           width: "100%",
         }}
       >
-        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-          ETHICSQUEST
-        </Typography>
+        <NavLink
+          to="/"
+          style={{
+            textDecoration: "none",
+            color: "inherit",
+          }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            ETHICSQUEST
+          </Typography>
+        </NavLink>
 
         <Box sx={{ display: "flex", gap: 4 }}>
-          <Button color="inherit" sx={{ textTransform: "none" }}>
-            Take a test
-          </Button>
-          <Button color="inherit" sx={{ textTransform: "none" }}>
-            My page
-          </Button>
+          <NavLink
+            to="/registration"
+            style={({ isActive }) => ({
+              textDecoration: "none",
+              fontWeight: isActive ? "bold" : "normal",
+              color: isActive ? "#1976d2" : "inherit",
+              borderBottom: isActive ? "2px solid #1976d2" : "none",
+            })}
+          >
+            <Button color="inherit" sx={{ textTransform: "none" }}>
+              Take a test
+            </Button>
+          </NavLink>
+          <NavLink
+            to="/your-type"
+            style={({ isActive }) => ({
+              textDecoration: "none",
+              fontWeight: isActive ? "bold" : "normal",
+              color: isActive ? "#1976d2" : "inherit",
+              borderBottom: isActive ? "2px solid #1976d2" : "none",
+            })}
+          >
+            <Button color="inherit" sx={{ textTransform: "none" }}>
+              My page
+            </Button>
+          </NavLink>
         </Box>
       </Toolbar>
     </AppBar>

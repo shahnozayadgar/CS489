@@ -10,7 +10,7 @@ const theme = createTheme({
     },
     body1: {
       fontWeight: 280, // Regular
-      fontSize: "22px", // Subtitle or description
+      fontSize: "20px", // Subtitle or description
     },
     button: {
       fontWeight: 500, // Semibold

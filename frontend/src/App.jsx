@@ -5,13 +5,14 @@ import WelcomePage from "./WelcomePage";
 import TestPage from "./TestPage";
 import ViewTypePage from "./ViewTypePage";
 import RegistrationPage from "./RegistrationPage";
+import NavBar from "./NavBar"; 
 import theme from "./theme";
-
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
+        <NavBar />
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/test" element={<TestPage />} />

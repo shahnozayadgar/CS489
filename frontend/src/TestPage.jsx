@@ -10,7 +10,6 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import NavBar from "./NavBar"; 
 
 function TestPage() {
   const [value, setValue] = useState("");
@@ -21,9 +20,6 @@ function TestPage() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      {/* Navbar Section */}
-      <NavBar />
-
       {/* Main Content Section */}
       <Container maxWidth="md">
         {/* Illustration Section */}
