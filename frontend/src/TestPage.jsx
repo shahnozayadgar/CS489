@@ -1,22 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Container,
-  Grid,
   Paper,
   Radio,
   RadioGroup,
   FormControlLabel,
   Button,
   Typography,
+  CircularProgress,
 } from "@mui/material";
 
 function TestPage() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(""); // Selected option
+  const [question, setQuestion] = useState(null); // Fetched question
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+
+  // Fetch question data from the API
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/questions/id"); 
+        if (!response.ok) {
+          throw new Error("Failed to fetch question.");
+        }
+        const data = await response.json();
+        setQuestion(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchQuestion();
+  }, []);
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
+  if (loading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+        <Typography color="error">{error}</Typography>
+      </Box>
+    );
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -30,7 +69,7 @@ function TestPage() {
             style={{ maxWidth: "50%", height: "auto", marginBottom: "16px" }}
           />
           <Typography variant="body1" sx={{ fontSize: "16px", color: "text.secondary" }}>
-            Some illustration describing the scenario
+            {question?.illustration || "Scenario illustration description."}
           </Typography>
         </Box>
 
@@ -48,14 +87,8 @@ function TestPage() {
           }}
         >
           <Typography variant="body1" sx={{ fontSize: "18px" }}>
-            As a student, you discover that some of your lab colleagues are falsely claiming travel allowances
-            for business trips they didn't take. They encourage you to do the same, assuring you it's a common
-            practice and an easy way to earn extra money. Refusing might isolate you from your peers and affect
-            your collaborations within the lab.<br />
-            <br />
-            How likely are you to refuse participation in business trips and consider reporting the misconduct?
+            {question?.text || "Scenario text goes here."}
           </Typography>
-
         </Paper>
 
         {/* Response Options */}
@@ -65,7 +98,7 @@ function TestPage() {
             alignItems: "center",
             justifyContent: "space-between",
             marginTop: 4,
-            marginBottom: 7
+            marginBottom: 7,
           }}
         >
           <Typography variant="body1" color="error" sx={{ textAlign: "left", marginLeft: 7 }}>
@@ -79,94 +112,29 @@ function TestPage() {
               display: "flex",
               justifyContent: "center",
               gap: "60px",
-              flexGrow: 1, // Ensures alignment within the available space
+              flexGrow: 1,
             }}
           >
-            <FormControlLabel
-              value="1"
-              control={
-                <Radio
-                  sx={{
-                    width: "75px",
-                    height: "75px",
-                    "& .MuiSvgIcon-root": { fontSize: 0 },
-                    border: "3px solid #FF6B6B",
-                    borderRadius: "50%",
-                    color: "transparent",
-                    "&.Mui-checked": { backgroundColor: "#FF6B6B" },
-                  }}
-                />
-              }
-              label=""
-            />
-            <FormControlLabel
-              value="2"
-              control={
-                <Radio
-                  sx={{
-                    width: "55px",
-                    height: "55px",
-                    "& .MuiSvgIcon-root": { fontSize: 0 },
-                    border: "3px solid #FF6B6B",
-                    borderRadius: "50%",
-                    color: "transparent",
-                    "&.Mui-checked": { backgroundColor: "#FF6B6B" },
-                  }}
-                />
-              }
-              label=""
-            />
-            <FormControlLabel
-              value="3"
-              control={
-                <Radio
-                  sx={{
-                    width: "45px",
-                    height: "45px",
-                    "& .MuiSvgIcon-root": { fontSize: 0 },
-                    border: "3px solid #9E9E9E",
-                    borderRadius: "50%",
-                    color: "transparent",
-                    "&.Mui-checked": { backgroundColor: "#9E9E9E" },
-                  }}
-                />
-              }
-              label=""
-            />
-            <FormControlLabel
-              value="4"
-              control={
-                <Radio
-                  sx={{
-                    width: "55px",
-                    height: "55px",
-                    "& .MuiSvgIcon-root": { fontSize: 0 },
-                    border: "3px solid #4F51FD",
-                    borderRadius: "50%",
-                    color: "transparent",
-                    "&.Mui-checked": { backgroundColor: "#4F51FD" },
-                  }}
-                />
-              }
-              label=""
-            />
-            <FormControlLabel
-              value="5"
-              control={
-                <Radio
-                  sx={{
-                    width: "75px",
-                    height: "75px",
-                    "& .MuiSvgIcon-root": { fontSize: 0 },
-                    border: "3px solid #4F51FD",
-                    borderRadius: "50%",
-                    color: "transparent",
-                    "&.Mui-checked": { backgroundColor: "#4F51FD" },
-                  }}
-                />
-              }
-              label=""
-            />
+            {Array.from({ length: 5 }, (_, i) => (
+              <FormControlLabel
+                key={i + 1}
+                value={(i + 1).toString()}
+                control={
+                  <Radio
+                    sx={{
+                      width: `${35 + i * 10}px`,
+                      height: `${35 + i * 10}px`,
+                      "& .MuiSvgIcon-root": { fontSize: 0 },
+                      border: `3px solid ${i < 2 ? "#FF6B6B" : i > 2 ? "#4F51FD" : "#9E9E9E"}`,
+                      borderRadius: "50%",
+                      color: "transparent",
+                      "&.Mui-checked": { backgroundColor: i < 2 ? "#FF6B6B" : i > 2 ? "#4F51FD" : "#9E9E9E" },
+                    }}
+                  />
+                }
+                label=""
+              />
+            ))}
           </RadioGroup>
           <Typography variant="body1" color="#4F51FD" sx={{ textAlign: "right" }}>
             Disagree

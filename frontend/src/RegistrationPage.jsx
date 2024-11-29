@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Form, Input, Select, Button, Typography, Row, Col, Card, message } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -8,12 +9,18 @@ const majors = [
   "Business Administration",
   "Electrical Engineering",
   "Mechanical Engineering",
+  "Aerospace Engineering",
+  "Electrical Engineering",
+  "Civil and Environmental Engineering",
+  "Bio and Brain Engineering",
+  "Industrial and Systems Engineering",
+  "Chemical and Biomolecular Engineering",
+  "Materials Science and Engineering",
+  "Nuclear and Quantum Engineering", 
   "Biology",
   "Physics",
   "Mathematics",
-  "Economics",
-  "Psychology",
-  "Art and Design",
+  "Economics"
 ];
 
 const mbtiOptions = [
@@ -24,9 +31,27 @@ const mbtiOptions = [
 ];
 
 const RegistrationPage = () => {
+  const navigate = useNavigate();
+  const formRefs = {}; 
+
+  const createRef = (name) => {
+    if (!formRefs[name]) {
+      formRefs[name] = React.createRef();
+    }
+    return formRefs[name];
+  };
+
+  const handleKeyDown = (event, nextFieldName) => {
+    if (event.key === "Enter" && nextFieldName) {
+      event.preventDefault();
+      formRefs[nextFieldName].current.focus(); 
+    }
+  };
+
   const onFinish = (values) => {
     console.log("Form Values: ", values);
     message.success("Your registration is successful!");
+    navigate("/test");
   };
 
   return (
@@ -37,10 +62,10 @@ const RegistrationPage = () => {
             xs={24}
             md={10}
             style={{
-              display: "flex", // Flexbox for vertical alignment
-              alignItems: "center", // Center the image vertically
-              justifyContent: "center", // Center the image horizontally
-              height: "100%", // Full height of the parent container
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
             }}
           >
             <img
@@ -49,7 +74,7 @@ const RegistrationPage = () => {
               style={{
                 maxWidth: "100%",
                 height: "auto",
-                marginTop: "50px"
+                marginTop: "50px",
               }}
             />
           </Col>
@@ -61,8 +86,8 @@ const RegistrationPage = () => {
                 padding: "24px",
                 borderRadius: "16px",
                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-                maxWidth: "600px", // Constrain the width of the Card
-                margin: "0 auto", // Center the Card within the column
+                maxWidth: "600px",
+                margin: "0 auto",
               }}
             >
               <Typography.Title level={3} style={{ fontWeight: "bold", fontSize: "35px", textAlign: "center" }}>
@@ -82,15 +107,7 @@ const RegistrationPage = () => {
               >
                 {/* Unique Name */}
                 <Form.Item
-                  label={
-                    <Typography.Text
-                      style={{
-                        fontSize: "16px",
-                      }}
-                    >
-                      Your Nickname
-                    </Typography.Text>
-                  }
+                  label={<Typography.Text style={{ fontSize: "16px" }}>Your Nickname</Typography.Text>}
                   name="uniqueName"
                   rules={[
                     {
@@ -99,20 +116,16 @@ const RegistrationPage = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="e.g., V for Taeyoung" />
+                  <Input
+                    ref={createRef("uniqueName")}
+                    placeholder="e.g., V for Taeyoung"
+                    onKeyDown={(event) => handleKeyDown(event, "gender")}
+                  />
                 </Form.Item>
 
                 {/* Gender */}
                 <Form.Item
-                  label={
-                    <Typography.Text
-                      style={{
-                        fontSize: "16px",
-                      }}
-                    >
-                      Your Gender
-                    </Typography.Text>
-                  }
+                  label={<Typography.Text style={{ fontSize: "16px" }}>Your Gender</Typography.Text>}
                   name="gender"
                   rules={[
                     {
@@ -121,7 +134,11 @@ const RegistrationPage = () => {
                     },
                   ]}
                 >
-                  <Select placeholder="Please select">
+                  <Select
+                    ref={createRef("gender")}
+                    placeholder="Please select"
+                    onKeyDown={(event) => handleKeyDown(event, "degreeType")}
+                  >
                     <Option value="male">Male</Option>
                     <Option value="female">Female</Option>
                     <Option value="other">Other</Option>
@@ -130,15 +147,7 @@ const RegistrationPage = () => {
 
                 {/* Degree Type */}
                 <Form.Item
-                  label={
-                    <Typography.Text
-                      style={{
-                        fontSize: "16px",
-                      }}
-                    >
-                      Your Degree
-                    </Typography.Text>
-                  }
+                  label={<Typography.Text style={{ fontSize: "16px" }}>Your Degree</Typography.Text>}
                   name="degreeType"
                   rules={[
                     {
@@ -147,7 +156,11 @@ const RegistrationPage = () => {
                     },
                   ]}
                 >
-                  <Select placeholder="Please select">
+                  <Select
+                    ref={createRef("degreeType")}
+                    placeholder="Please select"
+                    onKeyDown={(event) => handleKeyDown(event, "major")}
+                  >
                     <Option value="bachelor">Bachelor</Option>
                     <Option value="master">Master</Option>
                     <Option value="phd">Ph.D.</Option>
@@ -157,15 +170,7 @@ const RegistrationPage = () => {
 
                 {/* Major */}
                 <Form.Item
-                  label={
-                    <Typography.Text
-                      style={{
-                        fontSize: "16px",
-                      }}
-                    >
-                      Your Major
-                    </Typography.Text>
-                  }
+                  label={<Typography.Text style={{ fontSize: "16px" }}>Your Major</Typography.Text>}
                   name="major"
                   rules={[
                     {
@@ -174,7 +179,11 @@ const RegistrationPage = () => {
                     },
                   ]}
                 >
-                  <Select placeholder="Please select">
+                  <Select
+                    ref={createRef("major")}
+                    placeholder="Please select"
+                    onKeyDown={(event) => handleKeyDown(event, "mbti")}
+                  >
                     {majors.map((major, index) => (
                       <Option key={index} value={major}>
                         {major}
@@ -185,18 +194,14 @@ const RegistrationPage = () => {
 
                 {/* MBTI */}
                 <Form.Item
-                  label={
-                    <Typography.Text
-                      style={{
-                        fontSize: "16px",
-                      }}
-                    >
-                      Your MBTI (optional)
-                    </Typography.Text>
-                  }
+                  label={<Typography.Text style={{ fontSize: "16px" }}>Your MBTI (optional)</Typography.Text>}
                   name="mbti"
                 >
-                  <Select placeholder="Please select">
+                  <Select
+                    ref={createRef("mbti")}
+                    placeholder="Please select"
+                    onKeyDown={(event) => handleKeyDown(event, "submitButton")}
+                  >
                     {mbtiOptions.map((mbti, index) => (
                       <Option key={index} value={mbti}>
                         {mbti}
@@ -208,14 +213,15 @@ const RegistrationPage = () => {
                 {/* Submit Button */}
                 <Form.Item>
                   <Button
+                    ref={createRef("submitButton")}
                     type="primary"
                     htmlType="submit"
                     style={{
                       width: "100%",
                       backgroundColor: "#4F51FD",
                       borderColor: "#4F51FD",
-                      height: "46px", 
-                      marginTop: "12px", 
+                      height: "46px",
+                      marginTop: "12px",
                     }}
                   >
                     Submit
