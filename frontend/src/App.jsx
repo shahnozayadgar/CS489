@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from "react";
+import { ThemeProvider } from "@mui/material/styles";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import WelcomePage from "./WelcomePage";
+import TestPage from "./TestPage";
+import ViewTypePage from "./ViewTypePage";
+import RegistrationPage from "./RegistrationPage";
+import theme from "./theme";
+
 
 function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch('/api') // This will be proxied to http://localhost:5000/api
-      .then((res) => res.json())
-      .then((data) => setData(data.message))
-      .catch((err) => console.error(err));
-  }, []);
-
   return (
-    <div>
-      <h1>{data ? data : 'Loading...'}</h1>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/test" element={<TestPage />} />
+          <Route path="/registration" element={<RegistrationPage />} />
+          <Route path="/your-type" element={<ViewTypePage />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
