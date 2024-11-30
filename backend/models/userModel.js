@@ -32,13 +32,14 @@ class User {
         this.validGenders.includes(this.gender) &&
         this.validMbti.includes(this.mbti)
       );
-    }
-    static generateUserId(existingUserIds) {
-        // get the maximum existing user ID and increment by 1 for the new user
-        const maxId = existingUserIds.length ? Math.max(...existingUserIds) : 0;
-        return maxId + 1;
-    }
   }
-  
+
+  static generateUserId(existingUserIds) {
+      // Get the maximum existing user ID and increment by 1 for the new user
+      const maxId = existingUserIds.length ? Math.max(...existingUserIds) : 0;
+      return maxId + 1;
+  }
+}
+
 module.exports = User;
-  
+
