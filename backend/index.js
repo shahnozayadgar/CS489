@@ -18,6 +18,7 @@ app.use('/api/test', testRoutes);
 app.use('/api/user', userRoutes);
 app.use("/api/response", responseRoutes);
 
+
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from the backend!' });
 });
