@@ -3,7 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const mbtiRoutes = require('./routes/mbtiRoutes'); 
-const testRoutes = require('./routes/test');
+const testRoutes = require('./routes/scenario-question');
 const responseRoutes = require("./routes/responseRoutes");
 const userRoutes = require("./routes/userRoutes");
 

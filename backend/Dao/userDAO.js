@@ -1,5 +1,5 @@
 const db = require("../config/firebase");
-const User = require("../models/UserModel");
+const User = require("../models/userModel");
 
 class UserDAO {
   // The function to create a new user in the Firebase database
