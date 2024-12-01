@@ -11,17 +11,21 @@ import {
   CircularProgress,
 } from "@mui/material";
 
-function TestPage() {
+function TestPage({ userId }) {
   const [value, setValue] = useState(""); // Selected option
   const [question, setQuestion] = useState(null); // Fetched question
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
+  const [questionId, setQuestionId] = useState(1); // Current question ID
+  const [responses, setResponses] = useState([]); // Track all responses
 
   // Fetch question data from the API
   useEffect(() => {
     const fetchQuestion = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        const response = await fetch("http://localhost:5000/questions/id"); 
+        const response = await fetch(`http://localhost:5000/api/test/questions/${questionId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch question.");
         }
@@ -35,10 +39,59 @@ function TestPage() {
     };
 
     fetchQuestion();
-  }, []);
+  }, [questionId]); // Re-fetch when questionId changes
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  // Handle response submission
+  const submitResponse = async (responseValue) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/user/${userId}/responses`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          questionId,
+          response: responseValue,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit response.");
+      }
+
+      // Optionally track submitted responses locally
+      setResponses((prevResponses) => [
+        ...prevResponses,
+        { questionId, response: responseValue },
+      ]);
+    } catch (err) {
+      console.error("Error submitting response:", err.message);
+    }
+  };
+
+  // Handle navigation to the next question
+  const handleNext = () => {
+    if (!value) {
+      alert("Please select a response before proceeding.");
+      return;
+    }
+
+    // Submit the response for the current question
+    submitResponse(value);
+
+    // Move to the next question
+    if (questionId < 12) {
+      setQuestionId((prev) => prev + 1);
+      setValue(""); // Reset selected value for the next question
+    }
+  };
+
+  // Handle navigation to the previous question
+  const handleBack = () => {
+    if (questionId > 1) {
+      setQuestionId((prev) => prev - 1);
+      setValue(""); // Reset selected value for the previous question
+    }
   };
 
   if (loading) {
@@ -69,7 +122,7 @@ function TestPage() {
             style={{ maxWidth: "50%", height: "auto", marginBottom: "16px" }}
           />
           <Typography variant="body1" sx={{ fontSize: "16px", color: "text.secondary" }}>
-            {question?.illustration || "Scenario illustration description."}
+            {question?.scenario || "Scenario illustration description."}
           </Typography>
         </Box>
 
@@ -87,7 +140,7 @@ function TestPage() {
           }}
         >
           <Typography variant="body1" sx={{ fontSize: "18px" }}>
-            {question?.text || "Scenario text goes here."}
+            {question?.description || "Scenario text goes here."}
           </Typography>
         </Paper>
 
@@ -107,7 +160,7 @@ function TestPage() {
           <RadioGroup
             row
             value={value}
-            onChange={handleChange}
+            onChange={(e) => setValue(e.target.value)}
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -145,6 +198,8 @@ function TestPage() {
         <Box sx={{ display: "flex", justifyContent: "center", marginTop: 4, gap: 4 }}>
           <Button
             variant="contained"
+            disabled={questionId === 1}
+            onClick={handleBack}
             sx={{
               backgroundColor: "#BDBDBD",
               "&:hover": { backgroundColor: "#9E9E9E" },
@@ -157,6 +212,8 @@ function TestPage() {
           </Button>
           <Button
             variant="contained"
+            disabled={questionId === 12 && !value} 
+            onClick={handleNext}
             sx={{
               backgroundColor: "#4F51FD",
               "&:hover": { backgroundColor: "#3C38C8" },
