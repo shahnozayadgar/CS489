@@ -240,7 +240,7 @@ function TestPage({ userId }) {
             sx={{
               backgroundColor: "#BDBDBD",
               "&:hover": { backgroundColor: "#9E9E9E" },
-              borderRadius: "8px",
+              borderRadius: "80px",
               width: "150px",
               height: "60px",
             }}
@@ -253,7 +253,7 @@ function TestPage({ userId }) {
             sx={{
               backgroundColor: "#4F51FD", // Same color for both states
               "&:hover": { backgroundColor: "#3C38C8" }, // Same hover color
-              borderRadius: "8px",
+              borderRadius: "80px",
               width: "150px",
               height: "60px",
             }}
