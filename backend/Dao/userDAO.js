@@ -45,7 +45,11 @@ class UserDAO {
       throw new Error("Failed to create user");
     }
   }  
-  
+
+  static async getUserById(userId) {  //function to get user info from the id
+    const snapshot = await db.ref(`users/${userId}`).once("value");
+    return snapshot.val();
+  }
 }
 
 module.exports = UserDAO;
