@@ -75,9 +75,6 @@ function NavBar() {
                 borderBottom: isActive ? "2px solid #1976d2" : "none",
               })}
             >
-              <Button color="inherit" sx={{ textTransform: "none" }}>
-                My page
-              </Button>
             </NavLink>
           </Box>
 
@@ -105,9 +102,6 @@ function NavBar() {
           <List>
             <ListItem button component={NavLink} to="/registration">
               <ListItemText primary="Take a test" />
-            </ListItem>
-            <ListItem button component={NavLink} to="/your-type">
-              <ListItemText primary="My page" />
             </ListItem>
           </List>
         </Box>

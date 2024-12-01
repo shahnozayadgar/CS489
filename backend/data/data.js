@@ -9,7 +9,7 @@ let questions = [
         travel allowances for business trips they didn't take. They encourage you to do the same, assuring you 
         it's a common practice and an easy way to earn extra money. Refusing might isolate you from your peers 
         and affect your collaborations within the lab.`, 
-        question: `I would refuse to participate in business trips and consider reporting the misconduct. --> how likely`, 
+        question: `How likely are you to refuse participation in business trips and consider reporting the misconduct?`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},

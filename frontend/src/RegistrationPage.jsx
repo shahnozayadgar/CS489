@@ -6,7 +6,7 @@ const { Option } = Select;
 
 const majors = [
   "Computer Science",
-  "Business Administration",
+  "Business and Technology Management",
   "Electrical Engineering",
   "Mechanical Engineering",
   "Aerospace Engineering",
@@ -16,11 +16,12 @@ const majors = [
   "Chemical and Biomolecular Engineering",
   "Materials Science and Engineering",
   "Nuclear and Quantum Engineering",
-  "Biology",
+  "Biological Sciences",
+  "Industrial Design",
   "Physics",
   "Mathematics",
   "Economics",
-  "Other", 
+  "Other",  
 ];
 
 const mbtiOptions = [
@@ -29,8 +30,7 @@ const mbtiOptions = [
   "ISTJ", "ISFJ", "ESTJ", "ESFJ",
   "ISTP", "ISFP", "ESTP", "ESFP",
 ];
-// const api = process.env.REACT_APP_BACKEND_API;
-// console.log(api)
+
 const RegistrationPage = () => {
   const navigate = useNavigate();
   const formRefs = {};
