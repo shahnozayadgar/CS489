@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<WelcomePage />} />
           <Route path="/test" element={<TestPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
-          <Route path="/your-type" element={<ViewTypePage />} />
+          <Route path="/your-type" element={<ViewTypePage mbti="SPAT"/>} />
         </Routes>
       </Router>
     </ThemeProvider>

@@ -47,12 +47,13 @@ function TestPage({ userId }) {
   // Handle response submission
   const submitResponse = async (responseValue) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/user/${userId}/responses`, {
+      const response = await fetch(`http://localhost:5001/api/user/${userId}/response/update`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          UserId: userId,
           questionId,
           response: responseValue,
         }),
@@ -120,16 +121,36 @@ function TestPage({ userId }) {
       {/* Main Content Section */}
       <Container maxWidth="md">
         {/* Illustration Section */}
-        <Box textAlign="center">
-          <img
-            src="/illustration.svg"
-            alt="Scenario Illustration"
-            style={{ maxWidth: "50%", height: "auto", marginBottom: "16px" }}
-          />
-          <Typography variant="body1" sx={{ fontSize: "16px", color: "text.secondary" }}>
+        <Box textAlign="center" sx={{ marginBottom: "24px" }}>
+          <Paper
+            elevation={3}
+            sx={{
+              backgroundColor: "#EEF4FF", // Optional: Change the background color
+              borderRadius: "16px", // Rounded corners
+              display: "inline-block", // Wrap tightly around the content
+              overflow: "hidden",
+              padding: "20px"
+            }}
+          >
+            <img
+              src={`/scenarios/scenario${questionId}.svg`}
+              alt={`Illustration for Scenario ${questionId}`}
+              style={{ maxWidth: "300px", height: "auto", display: "block" }} // Center the image inside Paper
+            />
+          </Paper>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "16px",
+              color: "text.secondary",
+              marginTop: "16px",
+            }}
+          >
             {question?.scenario || "Scenario illustration description."}
           </Typography>
         </Box>
+
+
 
         {/* Scenario Box */}
         <Paper
