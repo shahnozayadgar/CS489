@@ -29,7 +29,8 @@ const mbtiOptions = [
   "ISTJ", "ISFJ", "ESTJ", "ESFJ",
   "ISTP", "ISFP", "ESTP", "ESFP",
 ];
-
+// const api = process.env.REACT_APP_BACKEND_API;
+// console.log(api)
 const RegistrationPage = () => {
   const navigate = useNavigate();
   const formRefs = {};
@@ -60,7 +61,7 @@ const RegistrationPage = () => {
         mbti: values.mbti || null,
       };
 
-      const response = await fetch("http://localhost:5000/api/user/create", {
+      const response = await fetch(`http://localhost:5001/api/user/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

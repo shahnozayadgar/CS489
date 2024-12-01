@@ -25,7 +25,7 @@ function TestPage({ userId }) {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(`http://localhost:5000/api/test/questions/${questionId}`);
+        const response = await fetch(`http://localhost:5001/api/test/questions/${questionId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch question.");
         }
@@ -44,7 +44,7 @@ function TestPage({ userId }) {
   // Handle response submission
   const submitResponse = async (responseValue) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/user/${userId}/responses`, {
+      const response = await fetch(`http://localhost:5001/api/user/${userId}/responses`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
