@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Form, Input, Select, Button, Typography, Row, Col, Card, message } from "antd";
 import { useNavigate } from "react-router-dom";
 
@@ -6,21 +6,22 @@ const { Option } = Select;
 
 const majors = [
   "Computer Science",
-  "Business Administration",
+  "Business and Technology Management",
   "Electrical Engineering",
   "Mechanical Engineering",
   "Aerospace Engineering",
-  "Electrical Engineering",
   "Civil and Environmental Engineering",
   "Bio and Brain Engineering",
   "Industrial and Systems Engineering",
   "Chemical and Biomolecular Engineering",
   "Materials Science and Engineering",
-  "Nuclear and Quantum Engineering", 
-  "Biology",
+  "Nuclear and Quantum Engineering",
+  "Biological Sciences",
+  "Industrial Design",
   "Physics",
   "Mathematics",
-  "Economics"
+  "Economics",
+  "Other",  
 ];
 
 const mbtiOptions = [
@@ -32,7 +33,8 @@ const mbtiOptions = [
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
-  const formRefs = {}; 
+  const formRefs = {};
+  const [showCustomMajor, setShowCustomMajor] = useState(false);
 
   const createRef = (name) => {
     if (!formRefs[name]) {
@@ -44,14 +46,42 @@ const RegistrationPage = () => {
   const handleKeyDown = (event, nextFieldName) => {
     if (event.key === "Enter" && nextFieldName) {
       event.preventDefault();
-      formRefs[nextFieldName].current.focus(); 
+      formRefs[nextFieldName].current.focus();
     }
   };
 
-  const onFinish = (values) => {
-    console.log("Form Values: ", values);
-    message.success("Your registration is successful!");
-    navigate("/test");
+  const onFinish = async (values) => {
+    try {
+      const selectedMajor = values.major === "Other" ? values.customMajor : values.major; 
+      const payload = {
+        name: values.uniqueName,
+        degreeType: values.degreeType,
+        major: selectedMajor,
+        gender: values.gender,
+        mbti: values.mbti || null,
+      };
+
+      const response = await fetch(`http://localhost:5001/api/user/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create user. Please try again.");
+      }
+
+      message.success("Your registration is successful!");
+      navigate("/test");
+    } catch (error) {
+      message.error(error.message || "An error occurred while registering.");
+    }
+  };
+
+  const handleMajorChange = (value) => {
+    setShowCustomMajor(value === "Other"); 
   };
 
   return (
@@ -183,6 +213,7 @@ const RegistrationPage = () => {
                     ref={createRef("major")}
                     placeholder="Please select"
                     onKeyDown={(event) => handleKeyDown(event, "mbti")}
+                    onChange={handleMajorChange}
                   >
                     {majors.map((major, index) => (
                       <Option key={index} value={major}>
@@ -191,6 +222,22 @@ const RegistrationPage = () => {
                     ))}
                   </Select>
                 </Form.Item>
+
+                {/* Custom Major Input */}
+                {showCustomMajor && (
+                  <Form.Item
+                    label={<Typography.Text style={{ fontSize: "16px" }}>Input your major</Typography.Text>}
+                    name="customMajor"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please specify your major!",
+                      },
+                    ]}
+                  >
+                    <Input placeholder="Enter your major" />
+                  </Form.Item>
+                )}
 
                 {/* MBTI */}
                 <Form.Item
