@@ -3,7 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const mbtiRoutes = require('./routes/mbtiRoutes'); 
-const testRoutes = require('./routes/scenario-question');
+//const testRoutes = require('./routes/scenario-question');
 const responseRoutes = require("./routes/responseRoutes");
 const userRoutes = require("./routes/userRoutes");
 
@@ -14,7 +14,7 @@ app.use(express.json());
 const port = process.env.PORT || 5001;
 
 app.use('/api/mbti', mbtiRoutes);
-app.use('/api/test', testRoutes);
+//app.use('/api/test', testRoutes);
 app.use('/api/user', userRoutes);
 app.use("/api/response", responseRoutes);
 
