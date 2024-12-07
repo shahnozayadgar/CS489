@@ -4,73 +4,97 @@
         "type": "SPAT",
         "title": "Independent Achiever",
         "description": "You are an Independent Achiever. You value creativity, personal success, and the thrill of leadership. You thrive on taking initiative and breaking new ground, often setting ambitious goals. In ethical decision-making, you prioritize solutions that enable individual autonomy and innovation. You are likely to challenge conventions and strive for progress while being driven by a sense of personal accomplishment.",
-        "picture": "images/spat.png"
+        "picture": "images/SPAT.png"
       },
       {
         "type": "SPAE",
         "title": "Strategic Leader",
         "description": "You are a Strategic Leader. You value independence, power, and well-thought-out plans. You approach challenges with a careful and methodical mindset, ensuring your actions align with long-term goals. Ethical decisions for you are grounded in balancing ambition with responsibility, as you believe in maintaining stability while pursuing success. You lead with vision, always aiming for structured yet impactful outcomes.",
-        "picture": "images/spae.png"
+        "picture": "images/SPAE.png"
       },
       {
         "type": "SPBT",
         "title": "Adventurous Leader",
         "description": "You are an Adventurous Leader. You value independence, influence, and excitement, often embracing risks for the sake of progress. You blend your leadership skills with a bold and caring attitude, making you a dynamic force for change. In ethical scenarios, you are willing to push boundaries and experiment with new approaches, but you do so with a genuine desire to uplift and support others.",
-        "picture": "images/spbt.png"
+        "picture": "images/SPBT.png"
       },
       {
         "type": "SPBE",
         "title": "Protective Leader",
         "description": "You are a Protective Leader. You value independence, strong relationships, and safeguarding those you care about. You take on leadership roles with a deep sense of responsibility, using your influence to create safe and supportive environments. Your ethical decisions are guided by a desire to empower others while ensuring stability and protection. You excel in balancing assertiveness with compassion.",
-        "picture": "images/spbe.png"
+        "picture": "images/SPBE.png"
       },
       {
         "type": "SUAT",
         "title": "Innovative Idealist",
         "description": "You are an Innovative Idealist. You value creativity, social equality, and ambitious pursuits. You are driven to bring new ideas to life that positively impact the community, often challenging norms for the greater good. In ethical dilemmas, you are likely to champion causes that promote fairness and inclusivity. Your vision is centered on creating a better future for everyone through innovative solutions.",
-        "picture": "images/suat.png"
+        "picture": "images/SUAT.png"
       },
       {
         "type": "SUAE",
         "title": "Pragmatic Idealist",
         "description": "You are a Pragmatic Idealist. You value harmony, creativity, and balanced progress. You bring a practical approach to making the world a better place, blending your idealism with realism. Ethical decisions for you are about making thoughtful and meaningful changes within stable structures. You work best when your ambitions are aligned with community welfare and tangible outcomes.",
-        "picture": "images/suae.png"
+        "picture": "images/SUAE.png"
       },
       {
         "type": "SUBT",
         "title": "Visionary Caregiver",
         "description": "You are a Visionary Caregiver. You value compassion, independence, and a spirit of adventure. You combine your desire to care for others with a willingness to explore new horizons. In ethical situations, you advocate for bold but considerate actions that bring about positive change. You are driven by a sense of wonder and creativity, always seeking to make a meaningful difference.",
-        "picture": "images/subt.png"
+        "picture": "images/SUBT.png"
       },
       {
         "type": "SUBE",
         "title": "Supportive Caregiver",
         "description": "You are a Supportive Caregiver. You value stability, kindness, and a sense of duty toward others. You are dependable and use your creativity to foster an inclusive and nurturing environment. Your ethical decisions are based on ensuring the well-being of the people around you. You believe in building strong, protective communities where everyone feels valued and supported.",
-        "picture": "images/sube.png"
+        "picture": "images/SUBE.png"
       },
       {
         "type": "CPAT",
         "title": "Competitive Performer",
         "description": "You are a Competitive Performer. You value personal success, social norms, and structured achievements. You thrive in environments where you can excel and be recognized for your efforts, following established guidelines. In ethical scenarios, you tend to weigh decisions based on outcomes that reflect well on your capabilities. You prioritize ambition but also understand the importance of working within societal expectations.",
-        "picture": "images/cpat.png"
+        "picture": "images/CPAT.png"
       },
       {
         "type": "CPAE",
         "title": "Structured Achiever",
         "description": "You are a Structured Achiever. You value discipline, stability, and goal-oriented success. You approach challenges with a clear plan and a focus on long-term achievement. Ethical decision-making for you is about maintaining order and doing what is necessary to secure results. You are a responsible leader who believes in the power of structured and predictable progress.",
-        "picture": "images/cpae.png"
+        "picture": "images/CPAE.png"
       },
       {
         "type": "CPBT",
         "title": "Risk-taking Protector",
         "description": "You are a Risk-taking Protector. You value power, compassion, and adventure. You take bold steps to defend and uplift others, using your influence in daring ways. Your ethical decisions often involve balancing risks with the potential to create significant positive impact. You believe in being brave and supportive, always willing to stand up for those who need it.",
-        "picture": "images/cpbt.png"
+        "picture": "images/CPBT.png"
       },
       {
         "type": "CPBE",
         "title": "Traditional Protector",
         "description": "You are a Traditional Protector. You value security, conformity, and strong relationships. You believe in upholding traditions and providing a safe, structured environment for others. Ethical decisions for you are about protecting the people and values you hold dear. You prioritize stability and consistency, creating a sense of trust and reliability in your community.",
-        "picture": "images/cpbe.png"
+        "picture": "images/CPBE.png"
+      },
+      {
+        "type": "CUAT",
+        "title": "Social Innovator",
+        "description": "You are a Social Innovator. You value inclusivity, ambition, and working within social norms to drive change. You aim to challenge existing structures carefully and respectfully, introducing bold ideas for collective improvement. Ethical decisions for you focus on balancing tradition with innovation to create meaningful, sustainable progress.",
+        "picture": "images/CUAT.png"
+      },
+      {
+        "type": "CUAE",
+        "title": "Responsible Reformer",
+        "description": "You are a Responsible Reformer. You value stability, inclusivity, and thoughtful progress. You believe in making changes that respect social norms while promoting fairness and equality. Ethical decision-making for you involves creating a harmonious balance between structure and innovation, with a focus on tangible outcomes.",
+        "picture": "images/CUAE.png"
+      },
+      {
+        "type": "CUBT",
+        "title": "Inclusive Pioneer",
+        "description": "You are an Inclusive Pioneer. You value adventure, compassion, and breaking barriers to achieve equality. You seek to lead bold initiatives that promote inclusivity while remaining considerate of others' needs. Ethical decisions for you emphasize creating opportunities for all and embracing novel solutions to societal challenges.",
+        "picture": "images/CUBT.png"
+      },
+      {
+        "type": "CUBE",
+        "title": "Traditional Nurturer",
+        "description": "You are a Traditional Nurturer. You value stability, kindness, and the preservation of social harmony. You strive to support others through nurturing relationships and by upholding long-standing traditions. Ethical decisions for you focus on fostering trust, protecting values, and creating a stable and supportive community.",
+        "picture": "images/CUBE.png"
       }
     ]
   }
