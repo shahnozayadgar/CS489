@@ -9,7 +9,7 @@ const theme = createTheme({
       fontSize: "80px", // For the title
     },
     body1: {
-      fontWeight: 280, // Regular
+      fontWeight: 250, // Regular
       fontSize: "20px", // Subtitle or description
     },
     button: {

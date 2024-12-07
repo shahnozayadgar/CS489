@@ -1,6 +1,3 @@
-// const { B } = require("pdf-parse/lib/pdf.js/v1.10.100/build/pdf");
-//const { B } = require("pdf-parse/lib/pdf.js/v1.10.100/build/pdf");
-
 const calculateMBTIType = (answers) => {
     //starting counter for each dimension
     let sCount = 0, cCount = 0;
