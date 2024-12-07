@@ -10,18 +10,18 @@ import {
   Typography,
   CircularProgress,
 } from "@mui/material";
-import { useUser } from "./UserContext"; // Import useUser to access userId
-import { useNavigate } from "react-router-dom"; // Import for navigation
+import { useUser } from "./UserContext"; 
+import { useNavigate } from "react-router-dom"; 
 
 function TestPage() {
   const { userID } = useUser();
-  const navigate = useNavigate(); // Initialize navigate for redirection
-  const [value, setValue] = useState(""); // Selected option
-  const [question, setQuestion] = useState(null); // Fetched question
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
-  const [questionId, setQuestionId] = useState(1); // Current question ID
-  const [responses, setResponses] = useState({}); // Track all responses by question ID
+  const navigate = useNavigate(); 
+  const [value, setValue] = useState(""); 
+  const [question, setQuestion] = useState(null); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
+  const [questionId, setQuestionId] = useState(1); 
+  const [responses, setResponses] = useState({}); 
 
   // Fetch question data from the API
   useEffect(() => {
@@ -51,7 +51,7 @@ function TestPage() {
   // Handle response submission
   const submitResponse = async (responseValue) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/user/${userID}/response/update`, {
+      const response = await fetch(`http://localhost:5001/api/response/update`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,15 +85,15 @@ function TestPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: userID }),
+        body: JSON.stringify({ userId: String(userID) }),
       });
 
       if (!response.ok) {
         throw new Error("Failed to submit the test.");
       }
 
-      const data = await response.json(); // Expected result object
-      console.log("Test result:", data); // Debugging: log the test result
+      const data = await response.json(); 
+      console.log("Test result:", data); 
 
       // Navigate to the results page and pass the data
       navigate("/your-type", { state: data });
@@ -204,6 +204,7 @@ function TestPage() {
         <Box
           sx={{
             display: "flex",
+            flexDirection:"row",
             alignItems: "center",
             justifyContent: "space-between",
             marginTop: 4,
@@ -226,6 +227,7 @@ function TestPage() {
             sx={{
               display: "flex",
               justifyContent: "center",
+              flexDirection: "row",
               gap: "40px",
               flexGrow: 1,
             }}
@@ -287,7 +289,7 @@ function TestPage() {
               backgroundColor: "#BDBDBD",
               "&:hover": { backgroundColor: "#9E9E9E" },
               borderRadius: "80px",
-              width: "150px",
+              width: "150px",                                         
               height: "60px",
             }}
           >

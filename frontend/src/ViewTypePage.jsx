@@ -178,7 +178,7 @@ function ViewTypePage() {
               {data.title || "Your MBTI Type"}
             </Typography>
             <img
-              src={data.picture || "images/default.png"} // Fallback image if none provided
+              src={`http://localhost:5001/${data.picture}` || "images/default.png"} 
               alt={`${data.type} illustration`}
               style={{ maxWidth: "80%", height: "auto", marginBottom: "14px" }}
             />
