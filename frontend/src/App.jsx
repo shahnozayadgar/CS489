@@ -7,9 +7,11 @@ import ViewTypePage from "./ViewTypePage";
 import RegistrationPage from "./RegistrationPage";
 import NavBar from "./NavBar"; 
 import theme from "./theme";
+import { UserProvider } from "./UserContext"; 
 
 function App() {
   return (
+    <UserProvider> 
     <ThemeProvider theme={theme}>
       <Router>
         <NavBar />
@@ -21,6 +23,7 @@ function App() {
         </Routes>
       </Router>
     </ThemeProvider>
+    </UserProvider>
   );
 }
 

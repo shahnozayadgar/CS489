@@ -10,8 +10,12 @@ import {
   Typography,
   CircularProgress,
 } from "@mui/material";
+import { useUser } from "./UserContext"; // Import useUser to access userId
+import { useNavigate } from "react-router-dom"; // Import for navigation
 
-function TestPage({ userId }) {
+function TestPage() {
+  const { userID } = useUser();
+  const navigate = useNavigate(); // Initialize navigate for redirection
   const [value, setValue] = useState(""); // Selected option
   const [question, setQuestion] = useState(null); // Fetched question
   const [loading, setLoading] = useState(true); // Loading state
@@ -47,15 +51,15 @@ function TestPage({ userId }) {
   // Handle response submission
   const submitResponse = async (responseValue) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/user/${userId}/response/update`, {
+      const response = await fetch(`http://localhost:5001/api/user/${userID}/response/update`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          UserId: userId,
+          userId: userID,
           questionId,
-          response: responseValue,
+          answerValue: Number(responseValue), // Ensure answerValue is a number
         }),
       });
 
@@ -73,6 +77,31 @@ function TestPage({ userId }) {
     }
   };
 
+  // Handle final test submission to calculate MBTI result
+  const submitTest = async () => {
+    try {
+      const response = await fetch(`http://localhost:5001/api/response/submit-test`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: userID }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit the test.");
+      }
+
+      const data = await response.json(); // Expected result object
+      console.log("Test result:", data); // Debugging: log the test result
+
+      // Navigate to the results page and pass the data
+      navigate("/your-type", { state: data });
+    } catch (err) {
+      console.error("Error submitting the test:", err.message);
+    }
+  };
+
   // Handle navigation to the next question
   const handleNext = () => {
     if (!value) {
@@ -85,7 +114,7 @@ function TestPage({ userId }) {
 
     // Redirect to results page if it's the last question
     if (questionId === 12) {
-      window.location.href = "/your-type";
+      submitTest(); // Call submitTest when the final question is answered
       return;
     }
 
@@ -125,17 +154,17 @@ function TestPage({ userId }) {
           <Paper
             elevation={3}
             sx={{
-              backgroundColor: "#EEF4FF", // Optional: Change the background color
-              borderRadius: "16px", // Rounded corners
-              display: "inline-block", // Wrap tightly around the content
+              backgroundColor: "#EEF4FF",
+              borderRadius: "16px",
+              display: "inline-block",
               overflow: "hidden",
-              padding: "20px"
+              padding: "20px",
             }}
           >
             <img
               src={`/scenarios/scenario${questionId}.svg`}
               alt={`Illustration for Scenario ${questionId}`}
-              style={{ maxWidth: "300px", height: "auto", display: "block" }} // Center the image inside Paper
+              style={{ maxWidth: "300px", height: "auto", display: "block" }}
             />
           </Paper>
           <Typography
@@ -150,8 +179,6 @@ function TestPage({ userId }) {
           </Typography>
         </Box>
 
-
-
         {/* Scenario Box */}
         <Paper
           elevation={6}
@@ -165,15 +192,13 @@ function TestPage({ userId }) {
             marginX: "auto",
           }}
         >
-          <Typography variant="body1" sx={{ fontSize: "18px", marginBottom: "26px"}}>
+          <Typography variant="body1" sx={{ fontSize: "18px", marginBottom: "26px" }}>
             {question?.description || "Scenario text goes here."}
           </Typography>
-
-          <Typography variant="body1" sx={{ fontSize: "19px"}}>
+          <Typography variant="body1" sx={{ fontSize: "19px" }}>
             {question?.question || "Question text goes here."}
           </Typography>
         </Paper>
-
 
         {/* Response Options */}
         <Box
@@ -206,11 +231,11 @@ function TestPage({ userId }) {
             }}
           >
             {[
-              { size: 70, color: "#FF6B6B" }, // Leftmost (largest red circle)
-              { size: 55, color: "#FF6B6B" }, // Smaller red circle
-              { size: 40, color: "#BDBDBD" }, // Middle gray circle
-              { size: 55, color: "#4F51FD" }, // Smaller blue circle
-              { size: 70, color: "#4F51FD" }, // Rightmost (largest blue circle)
+              { size: 70, color: "#FF6B6B" },
+              { size: 55, color: "#FF6B6B" },
+              { size: 40, color: "#BDBDBD" },
+              { size: 55, color: "#4F51FD" },
+              { size: 70, color: "#4F51FD" },
             ].map((btn, i) => (
               <FormControlLabel
                 key={i}
@@ -224,7 +249,7 @@ function TestPage({ userId }) {
                           height: `${btn.size}px`,
                           borderRadius: "50%",
                           border: `3px solid ${btn.color}`,
-                          backgroundColor: "transparent", // Unselected state is transparent
+                          backgroundColor: "transparent",
                         }}
                       />
                     }
@@ -235,8 +260,8 @@ function TestPage({ userId }) {
                           height: `${btn.size}px`,
                           borderRadius: "50%",
                           border: `3px solid ${btn.color}`,
-                          backgroundColor: btn.color, // Fill with color when selected
-                          boxShadow: `0 0 8px ${btn.color}80`, // Glow effect on selection
+                          backgroundColor: btn.color,
+                          boxShadow: `0 0 8px ${btn.color}80`,
                         }}
                       />
                     }
@@ -267,13 +292,13 @@ function TestPage({ userId }) {
             }}
           >
             BACK
-          </Button>  
+          </Button>
           <Button
             variant="contained"
             onClick={handleNext}
             sx={{
-              backgroundColor: "#4F51FD", // Same color for both states
-              "&:hover": { backgroundColor: "#3C38C8" }, // Same hover color
+              backgroundColor: "#4F51FD",
+              "&:hover": { backgroundColor: "#3C38C8" },
               borderRadius: "80px",
               width: "150px",
               height: "60px",

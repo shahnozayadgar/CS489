@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Form, Input, Select, Button, Typography, Row, Col, Card, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "./UserContext";
+
 
 const { Option } = Select;
 
@@ -33,6 +35,7 @@ const mbtiOptions = [
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
+  const { setUserID } = useUser();
   const formRefs = {};
   const [showCustomMajor, setShowCustomMajor] = useState(false);
 
@@ -72,6 +75,10 @@ const RegistrationPage = () => {
       if (!response.ok) {
         throw new Error("Failed to create user. Please try again.");
       }
+
+      const data = await response.json(); // Assume the API returns user data with an `id`
+      setUserID(data.user.userId); // Update the userID in context
+      console.log(data);
 
       message.success("Your registration is successful!");
       navigate("/test");
