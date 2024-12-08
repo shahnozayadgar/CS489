@@ -9,7 +9,11 @@ const responseRoutes = require("./routes/responseRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 const app = express();
-app.use(cors());
+const allowedOrigins = ['https://ethics-quest.onrender.com']; // Adjust to match your frontend domain
+app.use(cors({
+  origin: allowedOrigins
+}));
+
 app.use(express.json());
 
 // Serve static files from the React app (dist folder)
