@@ -12,20 +12,29 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from the React app (dist folder)
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Serve images folder (already in your existing code)
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-const port = process.env.PORT || 5001;
-
+// API routes
 app.use('/api/mbti', mbtiRoutes);
 app.use('/api/test', testRoutes);
 app.use('/api/user', userRoutes);
 app.use("/api/response", responseRoutes);
 
+// Serve React app's index.html for any other requests (for client-side routing)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
+// Test route for backend
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from the backend!' });
 });
 
+const port = process.env.PORT || 5001;
 app.listen(port, () => {
   console.log(`Backend server is running at http://localhost:${port}`);
 });
