@@ -15,13 +15,16 @@ function ViewTypePage() {
     return null;
   }
 
-  // Calculate the progress percentage for each trait pair
-  const calculateProgress = (leftValue, rightValue) => {
-    const total = leftValue + rightValue;
-    if (total === 0) return 0; // Avoid division by zero
-    return Math.round((leftValue / total) * 100);
+  const calculateProgress = (leftValue, rightValue, leftTrait, rightTrait) => {
+    const maxScore = 3; // Maximum score representing 100%
+    if (leftValue === rightValue) {
+      return { percentage: 50, trait: leftTrait }; // Balanced case
+    }
+    const dominant = leftValue > rightValue ? leftTrait : rightTrait;
+    const percentage = Math.round(((Math.max(leftValue, rightValue)) / maxScore) * 100);
+    return { percentage, trait: dominant };
   };
-
+  
   // Handle Download Results (Only "Your Type" Section)
   const handleDownload = () => {
     html2canvas(yourTypeRef.current, { 
@@ -49,7 +52,7 @@ function ViewTypePage() {
                 variant="h4"
                 sx={{
                   fontWeight: "bold",
-                  marginBottom: 2,
+                  marginBottom: 1,
                   color: "#4F51FD",
                 }}
               >
@@ -93,9 +96,7 @@ function ViewTypePage() {
                 { left: "Achievement", right: "Benevolence", leftValue: data.scores.A, rightValue: data.scores.B },
                 { left: "Stimulation", right: "Security", leftValue: data.scores.T, rightValue: data.scores.E },
               ].map(({ left, right, leftValue, rightValue }, index) => {
-                const percentage = calculateProgress(leftValue, rightValue);
-                const dominantTrait = percentage >= 50 ? left : right;
-
+                const { percentage, trait } = calculateProgress(leftValue, rightValue, left, right);
                 return (
                   <Grid key={index} container spacing={2} alignItems="center" sx={{ marginBottom: 4 }}>
                     {/* Trait Label */}
@@ -107,7 +108,7 @@ function ViewTypePage() {
                           color: ["#4F51FD", "#FFC107", "#4CAF50", "#FF5722"][index % 4],
                         }}
                       >
-                        {percentage}% {dominantTrait}
+                        {percentage}% {trait}
                       </Typography>
                     </Grid>
                     {/* Left Trait */}
