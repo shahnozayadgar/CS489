@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const mbtiRoutes = require('./routes/mbtiRoutes'); 
@@ -10,6 +11,8 @@ const userRoutes = require("./routes/userRoutes");
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 const port = process.env.PORT || 5001;
 
