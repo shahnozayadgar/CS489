@@ -38,7 +38,7 @@ let questions = [
         id: 3, 
         scenario: "Research Topic Dilemma",
         description : `You are working on a paper about your favorite topic. Your professor suggests switching to a more popular subject 
-        thats easier to get accepted into a conference or journal. Following his advice could enhance your publication prospects but means 
+        that's easier to get accepted into a conference or journal. Following his advice could enhance your publication prospects but means 
         abandoning your initial passion.`, 
         question: `You would stick to your original research topic despite the potential challenges..`, 
         options: [
@@ -57,7 +57,7 @@ let questions = [
         description : `In your lab, professors frequently assign personal tasks to graduate students and create a stressful environment. 
         Confronting this behavior could jeopardize your relationships and limit your opportunities for advancement and leadership within the lab. 
         However, staying silent allows the unethical practices to continue, negatively impacting the entire research community.`, 
-        question: `You would accept the situation to gain favor and advance my career.`, 
+        question: `You would accept the situation to gain favor and advance your career.`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},
@@ -73,7 +73,7 @@ let questions = [
         including specific timelines, roles, and promotional strategies to ensure its success. However, several club members suggest adopting a more 
         inclusive and collaborative planning process to gather everyone's input and foster a sense of ownership. 
         While their approach could enhance team morale and ensure diverse ideas, it might also delay key preparations and complicate decision-making.`, 
-        question: `You would assert my vision to ensure the event's efficiency and success.`, 
+        question: `You would assert your vision to ensure the event's efficiency and success.`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},
@@ -89,7 +89,7 @@ let questions = [
         You can either allocate the funds to host exclusive networking events with influential alumni and industry leaders, enhancing your 
         leadership and the SGAs status, or distribute the money to expand support services like mental health programs and academic tutoring, 
         benefiting the entire student body.`, 
-        question: `You would allocate the funds to host exclusive networking events to boost my leadership and the SGA’s status.`, 
+        question: `You would allocate the funds to host exclusive networking events to boost my leadership and the SGA's status.`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},
@@ -106,7 +106,7 @@ let questions = [
         description : `As a student, you have access to meeting funds allocated for your research team. You notice that reallocating some of these funds 
         to cover personal meals would allow you to dedicate more time to your research projects. Alternatively, maintaining the original allocation 
         would ensure that all team members have the resources they need for group activities and collaborations.`, 
-        question: `You would reallocate the meeting funds to support my personal research efforts.`, 
+        question: `You would reallocate the meeting funds to support your personal research efforts.`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},
@@ -121,7 +121,7 @@ let questions = [
         description : `You are applying for a highly competitive scholarship that could significantly support your education.
         Your close friend is also a contender and needs the scholarship to afford the next semester. 
         Sharing study resources or tips could improve their chances but reduce your own.`, 
-        question: `You would focus on my own preparation to maximize my chances of winning the scholarship.`, 
+        question: `You would focus on your own preparation to maximize your chances of winning the scholarship.`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},
@@ -135,7 +135,7 @@ let questions = [
         scenario: "Supporting a Teammate in Crisis",
         description : `You are working on a group project when a teammate faces a personal crisis, slowing their contributions. 
         Offering them flexibility could provide the support they need but might impact the projects timeline and quality.`, 
-        question: `You would encourage my teammate to catch up to ensure the project's success.`, 
+        question: `You would encourage youe teammate to catch up to ensure the project's success.`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},
@@ -152,7 +152,7 @@ let questions = [
         description : `As a new graduate student in a prestigious lab, senior members ask you to contribute to an informal fund for organizing events. 
         Contributing could help you build strong relationships and gain recognition, advancing your academic career. 
         However, declining supports may limit your networking opportunities.`, 
-        question: `You would contribute to the informal lab fund to build strong relationships and advance my academic career.`, 
+        question: `You would contribute to the informal lab fund to build strong relationships and advance your academic career.`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},
@@ -168,7 +168,7 @@ let questions = [
         A protest on campus supporting a cause you deeply believe in is taking place. 
         Joining the protest would allow you to stand up for your beliefs but might lead to disciplinary action or strain your relationship with your scholarship sponsor. 
         Choosing not to participate would protect your scholarship and academic standing but may leave you feeling that you are not supporting the cause you care about.`, 
-        question: `You would join the protest to stand up for what I believe in, even if it might lead to disciplinary action or strain my relationship with my scholarship sponsor.`, 
+        question: `You would join the protest to stand up for what you believe in, even if it might lead to disciplinary action or strain your relationship with your scholarship sponsor.`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},
@@ -182,7 +182,7 @@ let questions = [
         scenario: "Research Assistantship Decision",
         description : `A professor offers you a research assistant position on a groundbreaking, high-risk project that promises significant findings but demands extensive time and effort, 
         potentially disrupting your GPA. Alternatively, there is a safer assistantship available in a more stable area of study that offers a balanced workload and helps maintain your academic performance`, 
-        question: `You would take the riskier research assistant role for the potential experience and breakthroughs, even if it might disrupt my GPA.`, 
+        question: `You would take the riskier research assistant role for the potential experience and breakthroughs, even if it might disrupt your GPA.`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},
