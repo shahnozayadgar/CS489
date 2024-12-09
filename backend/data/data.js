@@ -135,7 +135,7 @@ let questions = [
         scenario: "Supporting a Teammate in Crisis",
         description : `You are working on a group project when a teammate faces a personal crisis, slowing their contributions. 
         Offering them flexibility could provide the support they need but might impact the projects timeline and quality.`, 
-        question: `You would encourage youe teammate to catch up to ensure the project's success.`, 
+        question: `You would encourage your teammate to catch up to ensure the project's success.`, 
         options: [
             {id: 1, text: "strongly agree", value: 1},
             {id: 2, text: "agree", value: 2},
