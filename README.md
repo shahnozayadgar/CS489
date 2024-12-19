@@ -28,10 +28,10 @@ The frontend will run on http://localhost:5173.
 
 1. Navigate to the backend directory:
    ```bash
-      cd backend
+   cd backend
 2. Install dependencies:
-    ```bash
-      npm install
+   ```bash
+   npm install
 3. Start the backend server:
    ```bash
    node index.js
