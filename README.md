@@ -41,7 +41,6 @@ The backend will run on http://localhost:5000.
 Contact
 For questions or collaboration inquiries, contact:
 
-Aizirek Turdubaeva - aizturdubaeva18@kaist.ac.kr
-\n Martina Di Paola - martinadipaola@kaist.ac.kr
-\n Shakhnozakhon Yadgarova - yadgarova@kaist.ac.kr
-Feel free to explore, learn, and grow with EthicsQuest!
+- Aizirek Turdubaeva - aizturdubaeva18@kaist.ac.kr
+- Martina Di Paola - martinadipaola@kaist.ac.kr
+- Shakhnozakhon Yadgarova - yadgarova@kaist.ac.kr
