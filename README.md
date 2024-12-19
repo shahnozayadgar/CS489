@@ -38,7 +38,7 @@ The frontend will run on http://localhost:5173.
 
 The backend will run on http://localhost:5000.
 
-Contact
+## Contact
 For questions or collaboration inquiries, contact:
 
 - Aizirek Turdubaeva - aizturdubaeva18@kaist.ac.kr
