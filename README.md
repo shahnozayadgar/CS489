@@ -36,4 +36,4 @@ The frontend will run on http://localhost:5173.
    ```bash
    node index.js
 
-The frontend will run on http://localhost:5000.
+The backend will run on http://localhost:5000.
