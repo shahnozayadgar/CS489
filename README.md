@@ -18,5 +18,22 @@ Ensure you have the following installed:
 2. Install dependencies:
    ```bash
    npm install
+3. Start the development server:
+   ```bash
+   npm run dev
 
+The frontend will run on http://localhost:5173.
 
+### Backend
+
+1. Navigate to the backend directory:
+   ```bash
+      cd backend
+2. Install dependencies:
+    ```bash
+      npm install
+3. Start the backend server:
+   ```bash
+   node index.js
+
+The frontend will run on http://localhost:5000.
