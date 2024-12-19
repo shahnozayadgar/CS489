@@ -15,3 +15,8 @@ Ensure you have the following installed:
 1. Navigate to the `frontend` directory:
    ```bash
    cd frontend
+2. Install dependencies:
+   ```bash
+   npm install
+
+
